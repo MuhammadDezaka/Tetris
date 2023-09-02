@@ -4,9 +4,17 @@ let gBArrayHeight = 20; // Number of cells in array height
 let gBArrayWidth = 12; // Number of cells in array width
 let startX = 4; // Starting X position for Tetromino
 let startY = 0; // Starting Y position for Tetromino
-let score = 0; // Tracks the score
-let level = 1; // Tracks current level
-let winOrLose = "Playing";
+let score;
+let winOrLose;
+let level;
+let gameStarted = false;
+
+//music and sound effect
+let backgroundMusic = new Audio("music.mp3");
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.6;
+
+let soundEffect = new Audio("sound.mp3");
 // Used as a look up table where each value in the array
 // contains the x & y position we can use to draw the
 // box on the canvas
@@ -49,8 +57,14 @@ class Coordinates{
 // Execute SetupCanvas when page loads
 document.addEventListener('DOMContentLoaded', function () {
     // Call SetupCanvas when page loads
- 
-    SetupCanvas();
+    document.getElementById("start-button").addEventListener("click", function () {
+        if (!gameStarted) {
+            StartGame();
+            HideControls();
+            gameStarted = true; // Set gameStarted to true when the game starts
+        }
+    });
+
     // Add event listeners to control buttons
 document.getElementById("left-button").addEventListener("click", function () {
     simulateKeyPress(65); // Simulate the 'A' key press (left)
@@ -69,6 +83,25 @@ document.getElementById("rotate-button").addEventListener("click", function () {
 });
 });
 
+function HideControls() {
+    // Hide the controls container
+    var controlsContainer = document.getElementById("container");
+    var button = document.getElementById("start-button");
+    controlsContainer.style.display = "block";
+    button.style.display = "none";
+}
+function StartGame() {
+    // Initialize game state
+    score = 0;
+    level = 1;
+    winOrLose = "Playing";
+
+
+    SetupCanvas();
+    backgroundMusic.play();
+
+
+}
 // Creates the array with square coordinates [Lookup Table]
 // [0,0] Pixels X: 11 Y: 9, [1,0] Pixels X: 34 Y: 9, ...
 function CreateCoordArray(){
@@ -229,7 +262,8 @@ function HandleKeyPress(key){
 
 function MoveTetrominoDown(){
     // 4. Track that I want to move down
-    direction = DIRECTION.DOWN;
+    if (gameStarted) {
+        direction = DIRECTION.DOWN;
 
     // 5. Check for a vertical collision
     if(!CheckForVerticalCollison()){
@@ -237,6 +271,8 @@ function MoveTetrominoDown(){
         startY++;
         DrawTetromino();
     }
+    }
+   
 }
 
 // 10. Automatically calls for a Tetromino to fall every second
@@ -252,19 +288,22 @@ window.setInterval(function(){
 // Do the same stuff when we drew originally
 // but make the square white this time
 function DeleteTetromino(){
-    for(let i = 0; i < curTetromino.length; i++){
-        let x = curTetromino[i][0] + startX;
-        let y = curTetromino[i][1] + startY;
-
-        // 4. Delete Tetromino square from the gameboard array
-        gameBoardArray[x][y] = 0;
-
-        // Draw white where colored squares used to be
-        let coorX = coordinateArray[x][y].x;
-        let coorY = coordinateArray[x][y].y;
-        ctx.fillStyle = 'white';
-        ctx.fillRect(coorX, coorY, 21, 21);
+    if (gameStarted) {
+        for(let i = 0; i < curTetromino.length; i++){
+            let x = curTetromino[i][0] + startX;
+            let y = curTetromino[i][1] + startY;
+    
+            // 4. Delete Tetromino square from the gameboard array
+            gameBoardArray[x][y] = 0;
+    
+            // Draw white where colored squares used to be
+            let coorX = coordinateArray[x][y].x;
+            let coorY = coordinateArray[x][y].y;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(coorX, coorY, 21, 21);
+        }
     }
+   
 }
 
 // 3. Generate random Tetrominos with color
@@ -478,6 +517,7 @@ function CheckForCompletedRows(){
         }
     }
     if(rowsToDelete > 0){
+        soundEffect.play();
         score += 10;
         ctx.fillStyle = 'white';
         ctx.fillRect(310, 109, 140, 19);

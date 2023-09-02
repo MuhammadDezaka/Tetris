@@ -3,7 +3,25 @@ body {
     text-align: center;
     background: darkblue;
 }
+#container{
+    display: none;
+}
 
+#start-button {
+    font-size: 24px; /* Adjust the font size to make it bigger */
+    padding: 10px 20px; /* Add padding to make it larger */
+    background-color: #FF5733; /* Change the background color to a colorful one */
+    color: #FFFFFF; /* Change the text color to white */
+    border: none; /* Remove the border */
+    border-radius: 10px; /* Add rounded corners */
+    cursor: pointer;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 200px; /* Set a fixed width for the button */
+    margin: 0 auto; /* Center the button horizontally */
+    margin-top: 400px;
+}
 /* Styles for the canvas */
 #my-canvas {
     background: #fff;
