@@ -8,6 +8,7 @@ let score;
 let winOrLose;
 let level;
 let gameStarted = false;
+let blocksFallInterval = 1000;
 
 //music and sound effect
 let backgroundMusic = new Audio("music.mp3");
@@ -277,11 +278,38 @@ function MoveTetrominoDown(){
 
 // 10. Automatically calls for a Tetromino to fall every second
 
+function updateLevel() {
+    level = Math.floor(score / 10) + 1;
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(310, 171, 161, 24);
+    ctx.fillStyle = 'black';
+    ctx.fillText(level.toString(), 310, 190);
+}
+
+function updateBlocksFallInterval() {
+    // Adjust the block fall interval based on the level
+    blocksFallInterval = 1000 - (level - 1) * 100;
+    // Ensure a minimum interval of 100ms to limit the speed
+    if (blocksFallInterval < 100) {
+        blocksFallInterval = 100;
+    }
+}
+
 window.setInterval(function(){
     if(winOrLose != "Game Over"){
         MoveTetrominoDown();
+        
+        // Check if the score is a multiple of 100 and update the level
+        if (score % 100 === 0) {
+            updateLevel();
+            updateBlocksFallInterval(); // Update the block fall interval
+        }
     }
-  }, 1000);
+    console.log(blocksFallInterval)
+}, blocksFallInterval); // Use blocksFallInterval as the interval
+
+// ...
 
 
 // Clears the previously drawn Tetromino
