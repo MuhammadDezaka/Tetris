@@ -11,7 +11,7 @@ let gameStarted = false;
 let blocksFallInterval = 1000;
 
 //music and sound effect
-let backgroundMusic = new Audio("music.mp3");
+let backgroundMusic = new Audio("s.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.6;
 
@@ -281,7 +281,7 @@ function MoveTetrominoDown(){
 // 10. Automatically calls for a Tetromino to fall every second
 
 function updateLevel() {
-    level = Math.floor(score / 10) + 1;
+    level = Math.floor(score / 100) + 1;
 
     ctx.fillStyle = 'white';
     ctx.fillRect(310, 171, 161, 24);
