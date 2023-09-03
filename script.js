@@ -88,8 +88,10 @@ function HideControls() {
     // Hide the controls container
     var controlsContainer = document.getElementById("container");
     var button = document.getElementById("start-button");
+    var container = document.getElementById("start-container");
     controlsContainer.style.display = "block";
     button.style.display = "none";
+    container.style.display = "none";
 }
 function StartGame() {
     // Initialize game state

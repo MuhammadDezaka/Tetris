@@ -7,6 +7,10 @@ body {
     display: none;
 }
 
+p ,span {
+    color: white;
+    text-shadow: black 2px;
+}
 #start-button {
     font-size: 24px; /* Adjust the font size to make it bigger */
     padding: 10px 20px; /* Add padding to make it larger */
