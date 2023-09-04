@@ -3,35 +3,67 @@ body {
     text-align: center;
     background: darkblue;
 }
-#container{
+
+#container {
     display: none;
 }
 
-p ,span {
+#start-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center vertically and horizontally */
+}
+
+.instruction {
+    background-color: #f2f2f2;
+    border: 5px solid black;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+p, span {
     color: white;
     text-shadow: black 2px;
 }
+
 #start-button {
-    font-size: 24px; /* Adjust the font size to make it bigger */
-    padding: 10px 20px; /* Add padding to make it larger */
-    background-color: #FF5733; /* Change the background color to a colorful one */
-    color: #FFFFFF; /* Change the text color to white */
-    border: none; /* Remove the border */
-    border-radius: 10px; /* Add rounded corners */
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #FF5733;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    width: 200px; /* Set a fixed width for the button */
-    margin: 0 auto; /* Center the button horizontally */
-    margin-top: 400px;
+    margin-top: 20px;
 }
+
+.made-by {
+    margin-top: 20px;
+}
+
 /* Styles for the canvas */
 #my-canvas {
     background: #fff;
-    margin: 10px auto; /* Center the canvas horizontally and add margin */
-    max-width: 100%; /* Make sure the canvas doesn't exceed the screen width */
-    width: 450px; /* Default width for larger screens */
+    margin: 10px auto;
+    max-width: 100%;
+    width: 450px;
 }
 
 /* Styles for the controls */
@@ -40,28 +72,31 @@ p ,span {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: auto; /* Let the content determine the height */
-    margin-top: 10px; /* Add margin at the top */
+    height: auto;
+    margin-top: 10px;
 }
 
 #joystick-svg {
-    width: 100%; /* Default width for larger screens */
-    height: auto; /* Let the height adjust proportionally */
+    width: 100%;
+    height: auto;
 }
+
 /* Media query for screens smaller than 768px (typical for mobile devices) */
 @media (max-width: 768px) {
-    /* Adjust styles for smaller screens */
     #my-canvas {
-        width: 100%; /* Make the canvas take the full screen width */
-        margin: 10px 0; /* Remove left and right margin, keep top and bottom margin */
+        width: 100%;
+        margin: 10px 0;
     }
-    
+
     #controls {
-        margin-top: 60px; /* Reduce the top margin for smaller screens */
+        margin-top: 60px;
     }
 
     #joystick-svg {
-        width: 80%; /* Make the joystick 50% of the screen width on mobile devices */
+        width: 80%;
+    }
+
+    .instruction {
+        width: 180px;
     }
 }
-

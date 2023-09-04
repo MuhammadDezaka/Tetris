@@ -3,15 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Balok Jatoh</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <script src="script.js"></script>
 </head>
 <body>
   <div id="start-container">
-  <button id="start-button">Start Game</button>
-  <p>Made by:</p> <span>Dezaka Ganteng :)</span>
+    <div class="instruction">
+        <span style="color: black;">Game Controls:</span>
+        <ul>
+          <li style="list-style-type: none;">
+              <span style="color: black;">&#9650;</span>
+              <span style="margin-left: 10px; color: black;">- Balok ke bawah</span>
+          </li>
+          <li style="list-style-type: none;">
+              <span style="color: black;">&#9654;</span>
+              <span style="margin-left: 10px; color: black;">- Balok ke kiri</span>
+          </li>
+          <li style="list-style-type: none;">
+              <span style="color: black;">&#9664;</span>
+              <span style="margin-left: 10px; color: black;">- Balok ke kanan</span>
+          </li>
+          <li style="list-style-type: none; display: flex; align-items: center;">
+              <div class="circle" style="font-size: 14px;"></div>
+              <span style="margin-left: 10px; color: black;">- Memutar balok</span>
+          </li>
+      </ul>
+    </div>
+
+    <button id="start-button">Start Game</button>
+    <div class="made-by">
+        <p>Made by:</p>
+        <span>Dezaka Ganteng :)</span>
+    </div>
 </div>
+
    <div id="container">
     <canvas id="my-canvas"></canvas>
     <div id="controls">
@@ -35,6 +62,7 @@
               <circle cx="50" cy="50" r="50" fill="url(#grad1)" />
               <circle cx="50" cy="50" r="47" fill="url(#grad2)" stroke="black" stroke-width="1.5px" />
               <circle cx="50" cy="50" r="44" fill="url(#grad3)" />
+                    <polygon points="50,30 55,40 45,40" fill="black" />
               <circle cx="50" cy="50" r="20" fill="#cccccc" stroke="black" stroke-width="1px" id="rotate-button" />
         
            <!-- Larger down button -->
